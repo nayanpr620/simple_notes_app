@@ -37,7 +37,7 @@ function App() {
   const [sortOrder, setSortOrder] = useState('desc');
 
   // BUG: missing dependency in useEffect array (React hooks lint error)
-  useEffect(() => 
+  useEffect(() => {
     const savedNotes = localStorage.getItem('notes');
     if (savedNotes) {
       setNotes(JSON.parse(savedNotes));
