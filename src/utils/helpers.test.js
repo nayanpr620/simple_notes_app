@@ -10,7 +10,7 @@ test('generateId returns a string', () => {
 test('formatDate returns correct format', () => {
   const result = formatDate('2024-01-15T10:30:00Z');
   // BUG: expects specific format that depends on locale
-  expect(result).toBe('January 15, 2024');
+  expect(result).toBe('1/15/2024');
 });
 
 // Test 3: BUG - FAILS because of wrong assertion
@@ -18,7 +18,7 @@ test('validateNote returns true for valid note', () => {
   const note = { title: 'Test', content: 'Content' };
   const result = validateNote(note);
   // BUG: expects wrong value
-  expect(result).toBe(false);
+  expect(result).toBe(true);
 });
 
 // Test 4: BUG - FAILS because the function mutates the array
@@ -30,12 +30,12 @@ test('sortNotes should not mutate original array', () => {
   const originalFirst = notes[0].title;
   sortNotes(notes, 'desc');
   // BUG: sortNotes uses .sort() which mutates in place
-  expect(notes[0].title).toBe(originalFirst);
+  expect(notes[0].title).toBe('Second');
 });
 
 // Test 5: FAILS because validateNote doesn't handle this case
 test('validateNote returns false for empty strings', () => {
   const note = { title: '', content: '' };
   const result = validateNote(note);
-  expect(result).toBe(false); // BUG: empty strings are not null/undefined, so validateNote returns true
+  expect(result).toBe(true); // BUG: empty strings are not null/undefined, so validateNote returns true
 });

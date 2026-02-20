@@ -26,8 +26,6 @@ export const validateNote = (note) => {
   if (note.content == null || note.content == undefined) {
     return false;
   }
-  // BUG: console.log
-  console.log("Note is valid:", note.title);
   return true;
 };
 
